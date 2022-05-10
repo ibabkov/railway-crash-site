@@ -22,7 +22,7 @@
   animation: fade-in 2s linear;
 }
 
-.progress:before {
+.progress::before {
   position: absolute;
   display: block;
   content: '';
@@ -34,7 +34,7 @@
   animation: progress 20s ease-in-out;
 }
 
-.progress:after {
+.progress::after {
   position: absolute;
   display: block;
   content: '';
@@ -45,10 +45,9 @@
   transform: scaleX(0);
 }
 
-.progress-load:after {
+.progress-load::after {
   transform: scaleX(1);
 }
-
 
 .loader {
   display: flex;
