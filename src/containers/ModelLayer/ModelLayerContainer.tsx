@@ -1,12 +1,5 @@
 import type { Map } from 'mapbox-gl';
-import {
-  Camera,
-  FrontSide,
-  Points,
-  PointsMaterial,
-  Scene,
-  WebGLRenderer,
-} from 'three';
+import { Camera, Points, PointsMaterial, Scene, WebGLRenderer } from 'three';
 
 import { useMapLoad } from '../../hooks/useMapLoad';
 import {
@@ -14,6 +7,7 @@ import {
   getThreeRenderer,
   loadModel,
 } from './helpers';
+import { MODEL_MATERIAL_OPTIONS } from '../../constants/model';
 
 export interface IModelLayerContainerProps {
   onLoad: () => void;
@@ -38,11 +32,7 @@ export const ModelLayerContainer = (props: IModelLayerContainerProps) => {
     );
 
     function handleLoadModel(gltf: any) {
-      const material = new PointsMaterial({
-        vertexColors: true,
-        side: FrontSide,
-        transparent: false,
-      });
+      const material = new PointsMaterial(MODEL_MATERIAL_OPTIONS);
       gltf.computeVertexNormals();
 
       scene.add(new Points(gltf, material));
