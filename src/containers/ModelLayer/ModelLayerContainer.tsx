@@ -1,6 +1,5 @@
 import type { Map } from 'mapbox-gl';
-import type { GLTF } from 'three-stdlib';
-import { Camera, Scene, WebGLRenderer } from 'three';
+import { Camera, Points, PointsMaterial, Scene, WebGLRenderer } from 'three';
 
 import { useMapLoad } from '../../hooks/useMapLoad';
 import {
@@ -8,6 +7,7 @@ import {
   getThreeRenderer,
   loadModel,
 } from './helpers';
+import { MODEL_MATERIAL_OPTIONS } from '../../constants/model';
 
 export interface IModelLayerContainerProps {
   onLoad: () => void;
@@ -31,8 +31,11 @@ export const ModelLayerContainer = (props: IModelLayerContainerProps) => {
       'waterway-label'
     );
 
-    function handleLoadModel(gltf: GLTF) {
-      scene.add(gltf.scene);
+    function handleLoadModel(gltf: any) {
+      const material = new PointsMaterial(MODEL_MATERIAL_OPTIONS);
+      gltf.computeVertexNormals();
+
+      scene.add(new Points(gltf, material));
       onLoad();
     }
 
