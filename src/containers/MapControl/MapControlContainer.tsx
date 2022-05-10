@@ -17,11 +17,11 @@ import {
 import { getNewBearing, enableRotate, easeToCenter } from './helpers';
 import { useMapLoad } from '../../hooks/useMapLoad';
 
-export interface IMapControlContainer {
+export interface IMapControlContainerProps {
   onIdle: () => void;
 }
 
-export const MapControlContainer: React.FC<IMapControlContainer> = (props) => {
+export const MapControlContainer = (props: IMapControlContainerProps) => {
   const { onIdle } = props;
   const [state] = React.useState(() => ({ ...INITIAL_CONTROL_STATE }));
 

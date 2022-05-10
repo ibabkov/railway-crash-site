@@ -24,20 +24,25 @@ export const ApplicationContainer: React.FC = () => {
   const setMap = useModifyApplicationState(modifyMap);
   const mapContainerRef = React.useRef<HTMLDivElement>(null);
   const [load, setLoad] = React.useState(false);
+  const [idle, setIdle] = React.useState(false);
 
   React.useEffect(() => {
     setMap(new Map(getMapOptions(mapContainerRef.current!)));
   }, []);
 
   const handleIdle = React.useCallback(() => {
+    setIdle(true);
+  }, [setIdle]);
+
+  const handleLoad = React.useCallback(() => {
     setLoad(true);
   }, [setLoad]);
 
   return (
-    <MapLayout containerRef={mapContainerRef} load={load}>
+    <MapLayout containerRef={mapContainerRef} load={idle && load}>
       <BuildingLayerContainer />
       <FogLayerContainer />
-      <ModelLayerContainer />
+      <ModelLayerContainer onLoad={handleLoad} />
       <MapControlContainer onIdle={handleIdle} />
     </MapLayout>
   );
@@ -58,6 +63,9 @@ function getMapOptions(mapContainer: HTMLDivElement): MapboxOptions {
     accessToken: MAPBOX_TOKEN,
     style: MAP_STYLE,
     center: MAP_CENTER,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    minTileCacheSize: 1000,
     antialias: true,
     dragPan: false,
     dragRotate: false,

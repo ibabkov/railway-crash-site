@@ -1,5 +1,3 @@
-import React from 'react';
-
 import type { Map } from 'mapbox-gl';
 import type { GLTF } from 'three-stdlib';
 import { Camera, Scene, WebGLRenderer } from 'three';
@@ -11,7 +9,12 @@ import {
   loadModel,
 } from './helpers';
 
-export const ModelLayerContainer: React.FC = () => {
+export interface IModelLayerContainerProps {
+  onLoad: () => void;
+}
+
+export const ModelLayerContainer = (props: IModelLayerContainerProps) => {
+  const { onLoad } = props;
   useMapLoad((map) => {
     let renderer: WebGLRenderer | null = null;
     const camera = new Camera();
@@ -30,6 +33,7 @@ export const ModelLayerContainer: React.FC = () => {
 
     function handleLoadModel(gltf: GLTF) {
       scene.add(gltf.scene);
+      onLoad();
     }
 
     function handleAddLayer(map: Map, gl: WebGLRenderingContext) {

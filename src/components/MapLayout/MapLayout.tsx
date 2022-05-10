@@ -28,7 +28,7 @@ export const MapLayout: React.FC<IMapLayoutProps> = (props) => {
           !load && styles['fallback-show']
         )}
       >
-        <Fallback />
+        <Fallback load={load} />
       </div>
     </div>
   );
