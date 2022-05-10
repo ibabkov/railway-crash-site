@@ -1,0 +1,1 @@
+export const MIN_BUILDING_LAYER_ZOOM = 15;
