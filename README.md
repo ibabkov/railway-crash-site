@@ -1,12 +1,12 @@
 # railway-crash-site
 
-3D map and point cloud visualization of fictional railway train crash site in Canada.
+3D map and point cloud visualization of a fictional railway train crash site in Canada.
 
 ## Main features
 - Three.js + Mapbox integration
 - Visualization of railway train crash point cloud laser scan (~ 1.8M vertices)
-- Custom camera animation(mouse + touch)
-- 3D interactive map(with buildings)
+- Custom camera animation (mouse + touch)
+- 3D interactive map (with buildings)
 - Mapbox fog layer
 
 ## Acknowledgements
