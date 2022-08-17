@@ -13,7 +13,7 @@ import {
   INITIAL_MAP_PITCH,
   MAP_CENTER,
   MAP_STYLE,
-  MAPBOX_TOKEN,
+  MAPBOX_ACCESS_TOKEN,
   INITIAL_MAP_ZOOM,
   MAX_MAP_ZOOM,
   MAP_BEARING,
@@ -60,7 +60,7 @@ function getMapOptions(mapContainer: HTMLDivElement): MapboxOptions {
     minPitch: 0,
     maxPitch: INITIAL_MAP_PITCH,
     container: mapContainer,
-    accessToken: MAPBOX_TOKEN,
+    accessToken: MAPBOX_ACCESS_TOKEN,
     style: MAP_STYLE,
     center: MAP_CENTER,
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
