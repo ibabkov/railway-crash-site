@@ -1,13 +1,16 @@
 import type { Map } from 'mapbox-gl';
-import { WebGLRenderer } from 'three';
+import { WebGLRenderer, LinearSRGBColorSpace, ColorManagement } from 'three';
 
 export function getThreeRenderer(map: Map, gl: WebGLRenderingContext) {
-  const renderer = new WebGLRenderer({
-    canvas: map.getCanvas(),
-    context: gl,
-    antialias: true,
-  });
-  renderer.autoClear = false;
+	const renderer = new WebGLRenderer({
+		canvas: map.getCanvas(),
+		context: gl,
+		antialias: true,
+	});
+	renderer.autoClear = false;
+	renderer.outputColorSpace = LinearSRGBColorSpace;
 
-  return renderer;
+	ColorManagement.enabled = true;
+
+	return renderer;
 }

@@ -6,10 +6,10 @@ export const MODEL_POINT_SIZE = 2.5;
 export const MODEL_ROTATION = [0, 0, 1.74];
 export const MODEL_URL = '/scene.ply';
 export const MODEL_MATERIAL_OPTIONS = {
-  vertexColors: true,
-  side: FrontSide,
-  transparent: false,
-  sizeAttenuation: false,
-  fog: false,
-  size: MODEL_POINT_SIZE,
+	vertexColors: true,
+	side: FrontSide,
+	transparent: false,
+	sizeAttenuation: false,
+	fog: false,
+	size: MODEL_POINT_SIZE,
 };

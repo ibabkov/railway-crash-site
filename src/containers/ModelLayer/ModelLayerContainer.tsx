@@ -2,57 +2,56 @@ import type { Map } from 'mapbox-gl';
 import { Camera, Points, PointsMaterial, Scene, WebGLRenderer } from 'three';
 
 import { useMapLoad } from '../../hooks/useMapLoad';
-import {
-  getModelProjectionMatrix,
-  getThreeRenderer,
-  loadModel,
-} from './helpers';
+import { getModelProjectionMatrix, getThreeRenderer, loadModel } from './helpers';
 import { MODEL_MATERIAL_OPTIONS } from '../../constants/model';
 
 export interface IModelLayerContainerProps {
-  onLoad: () => void;
+	onLoad: () => void;
 }
 
 export const ModelLayerContainer = (props: IModelLayerContainerProps) => {
-  const { onLoad } = props;
-  useMapLoad((map) => {
-    let renderer: WebGLRenderer | null = null;
-    const camera = new Camera();
-    const scene = new Scene();
+	const { onLoad } = props;
+	useMapLoad(map => {
+		let renderer: WebGLRenderer | null = null;
+		const camera = new Camera();
+		const scene = new Scene();
 
-    map.addLayer(
-      {
-        id: '3d-model',
-        type: 'custom',
-        renderingMode: '3d',
-        onAdd: handleAddLayer,
-        render: handleRenderLayer,
-      },
-      'waterway-label'
-    );
+		map.addLayer(
+			{
+				id: '3d-model',
+				type: 'custom',
+				renderingMode: '3d',
+				onAdd: handleAddLayer,
+				render: handleRenderLayer,
+			},
+			'waterway-label',
+		);
 
-    function handleLoadModel(gltf: any) {
-      const material = new PointsMaterial(MODEL_MATERIAL_OPTIONS);
-      gltf.computeVertexNormals();
+		function handleLoadModel(gltf: any) {
+			const material = new PointsMaterial(MODEL_MATERIAL_OPTIONS);
+			gltf.computeVertexNormals();
 
-      scene.add(new Points(gltf, material));
-      onLoad();
-    }
+			material.vertexColors = true;
+			const points = new Points(gltf, material);
 
-    function handleAddLayer(map: Map, gl: WebGLRenderingContext) {
-      loadModel(handleLoadModel);
-      renderer = getThreeRenderer(map, gl);
-    }
+			scene.add(points);
+			onLoad();
+		}
 
-    function handleRenderLayer(gl: WebGLRenderingContext, matrix: number[]) {
-      if (!renderer) return;
+		function handleAddLayer(map: Map, gl: WebGLRenderingContext) {
+			loadModel(handleLoadModel);
+			renderer = getThreeRenderer(map, gl);
+		}
 
-      camera.projectionMatrix = getModelProjectionMatrix(matrix);
-      renderer.resetState();
-      renderer.render(scene, camera);
-      map.triggerRepaint();
-    }
-  });
+		function handleRenderLayer(gl: WebGLRenderingContext, matrix: number[]) {
+			if (!renderer) return;
 
-  return null;
+			camera.projectionMatrix = getModelProjectionMatrix(matrix);
+			renderer.resetState();
+			renderer.render(scene, camera);
+			map.triggerRepaint();
+		}
+	});
+
+	return null;
 };
