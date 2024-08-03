@@ -1,21 +1,21 @@
 .container,
 .map,
 .fallback {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transition: opacity 1s ease-in 2s;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	transition: opacity 1s ease-in 2s;
 }
 
 .fallback,
 .map {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
 }
 
 .fallback-show,
 .map-show {
-  opacity: 1;
-  pointer-events: initial;
+	opacity: 1;
+	pointer-events: initial;
 }

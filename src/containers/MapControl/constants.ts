@@ -1,13 +1,13 @@
 export const INITIAL_CONTROL_STATE = {
-  rotating: false,
-  easing: false,
-  lastX: 0,
+	rotating: false,
+	easing: false,
+	lastX: 0,
 };
 
 export const ROTATE_OPTIONS = {
-  duration: 0,
-  essential: true,
-  animate: false,
+	duration: 0,
+	essential: true,
+	animate: false,
 };
 
 export const IDLE_CHECK_INTERVAL = 1000;
