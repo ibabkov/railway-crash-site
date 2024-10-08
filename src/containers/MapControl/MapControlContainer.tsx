@@ -8,11 +8,11 @@ import { INITIAL_MAP_ZOOM, INITIAL_MAP_PITCH, MIN_MAP_ZOOM } from '../../constan
 import { getNewBearing, enableRotate, easeToCenter } from './helpers';
 import { useMapLoad } from '../../hooks/useMapLoad';
 
-export interface IMapControlContainerProps {
+export type MapControlContainerProps = {
 	onIdle: () => void;
-}
+};
 
-export const MapControlContainer = (props: IMapControlContainerProps) => {
+export const MapControlContainer = (props: MapControlContainerProps) => {
 	const { onIdle } = props;
 	const [state] = React.useState(() => ({ ...INITIAL_CONTROL_STATE }));
 

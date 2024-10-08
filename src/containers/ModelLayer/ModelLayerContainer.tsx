@@ -5,11 +5,11 @@ import { useMapLoad } from '../../hooks/useMapLoad';
 import { getModelProjectionMatrix, getThreeRenderer, loadModel } from './helpers';
 import { MODEL_MATERIAL_OPTIONS } from '../../constants/model';
 
-export interface IModelLayerContainerProps {
+export type ModelLayerContainerProps = {
 	onLoad: () => void;
-}
+};
 
-export const ModelLayerContainer = (props: IModelLayerContainerProps) => {
+export const ModelLayerContainer = (props: ModelLayerContainerProps) => {
 	const { onLoad } = props;
 	useMapLoad(map => {
 		let renderer: WebGLRenderer | null = null;

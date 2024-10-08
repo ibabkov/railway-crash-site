@@ -7,8 +7,6 @@ import { BuildingLayerContainer } from '../BuildingLayer';
 import { FogLayerContainer } from '../FogLayer';
 import { ModelLayerContainer } from '../ModelLayer';
 import { MapControlContainer } from '../MapControl';
-import { useModifyApplicationState } from '../../hooks/applicationContext';
-import { modifyMap } from '../../modifiers/modifyMap';
 import {
 	INITIAL_MAP_PITCH,
 	MAP_CENTER,
@@ -19,15 +17,16 @@ import {
 	MAP_BEARING,
 } from '../../constants/map';
 import { MapLayout } from '../../components/MapLayout';
+import { useStore } from '../../hooks/useStore';
 
 export const ApplicationContainer: React.FC = () => {
-	const setMap = useModifyApplicationState(modifyMap);
+	const { actions } = useStore();
 	const mapContainerRef = React.useRef<HTMLDivElement>(null);
 	const [load, setLoad] = React.useState(false);
 	const [idle, setIdle] = React.useState(false);
 
 	React.useEffect(() => {
-		setMap(new Map(getMapOptions(mapContainerRef.current!)));
+		actions.setMap({ map: new Map(getMapOptions(mapContainerRef.current!)) });
 	}, []);
 
 	const handleIdle = React.useCallback(() => {

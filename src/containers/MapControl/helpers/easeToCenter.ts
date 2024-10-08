@@ -2,9 +2,9 @@ import type { Map } from 'mapbox-gl';
 
 import { MAP_CENTER } from '../../../constants/map';
 import { EASE_ANIMATION_DURATION } from '../constants';
-import { IMapControlContainerState } from '../types';
+import { MapControlContainerState } from '../types';
 
-export const easeToCenter = (map: Map, state: IMapControlContainerState) => {
+export const easeToCenter = (map: Map, state: MapControlContainerState) => {
 	state.easing = true;
 
 	map.easeTo({

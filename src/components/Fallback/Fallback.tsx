@@ -4,11 +4,11 @@ import classNames from 'classnames';
 
 import styles from './Fallback.module.css';
 
-export interface IFallbackProps {
+export type FallbackProps = {
 	load: boolean;
-}
+};
 
-export const Fallback: React.FC<IFallbackProps> = props => {
+export const Fallback: React.FC<FallbackProps> = props => {
 	const { load } = props;
 
 	return (

@@ -2,10 +2,10 @@ import React from 'react';
 
 import type { Map } from 'mapbox-gl';
 
-import { useApplicationState } from '../applicationContext';
+import { useStore } from '../useStore';
 
 export const useMapLoad = (listener: (map: Map) => void) => {
-	const [{ map }] = useApplicationState();
+	const { map } = useStore();
 
 	React.useEffect(() => {
 		if (!map) return;
