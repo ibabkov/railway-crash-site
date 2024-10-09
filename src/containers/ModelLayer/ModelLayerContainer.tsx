@@ -50,6 +50,7 @@ export const ModelLayerContainer = () => {
 			points = new Points(gltf, material);
 
 			scene.add(points);
+			map.triggerRepaint();
 		}
 
 		function handleAddLayer(map: Map, gl: WebGLRenderingContext) {
