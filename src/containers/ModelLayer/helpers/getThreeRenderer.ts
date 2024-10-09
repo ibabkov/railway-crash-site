@@ -3,6 +3,7 @@ import { WebGLRenderer, LinearSRGBColorSpace, ColorManagement } from 'three';
 
 export function getThreeRenderer(map: Map, gl: WebGLRenderingContext) {
 	const renderer = new WebGLRenderer({
+		logarithmicDepthBuffer: true,
 		canvas: map.getCanvas(),
 		context: gl,
 		antialias: true,

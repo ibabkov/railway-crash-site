@@ -1,5 +1,6 @@
 import { MercatorCoordinate } from 'mapbox-gl';
 import { Matrix4, Vector3 } from 'three';
+import memoize from 'lodash/memoize';
 
 import { MODEL_ALTITUDE, MODEL_POSITION, MODEL_ROTATION } from '../../../constants/model';
 
@@ -20,7 +21,7 @@ const MODEL_ROTATION_MAT_Y = new Matrix4().makeRotationAxis(new Vector3(0, 1, 0)
 
 const MODEL_ROTATION_MAT_Z = new Matrix4().makeRotationAxis(new Vector3(0, 0, 1), MODEL_TRANSFORM.rotateZ);
 
-export function getModelProjectionMatrix(m: number[]) {
+export const getModelProjectionMatrix = memoize((m: number[]) => {
 	const matrix = new Matrix4().fromArray(m);
 	const scaleVector = new Vector3(MODEL_TRANSFORM.scale, -MODEL_TRANSFORM.scale, MODEL_TRANSFORM.scale);
 	const projectionMatrix = new Matrix4()
@@ -31,4 +32,4 @@ export function getModelProjectionMatrix(m: number[]) {
 		.multiply(MODEL_ROTATION_MAT_Z);
 
 	return matrix.multiply(projectionMatrix);
-}
+});

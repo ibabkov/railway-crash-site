@@ -8,19 +8,20 @@ import styles from './MapLayout.module.css';
 export type MapLayoutProps = {
 	children: React.ReactNode;
 	containerRef: React.RefObject<HTMLDivElement>;
-	load: boolean;
+	idle: boolean;
+	loadingProgress: number;
 };
 
 export const MapLayout: React.FC<MapLayoutProps> = props => {
-	const { children, load, containerRef } = props;
+	const { children, idle, containerRef, loadingProgress } = props;
 
 	return (
 		<div className={styles['container']}>
-			<div className={classNames(styles['map'], load && styles['map-show'])} ref={containerRef}>
+			<div className={classNames(styles['map'], idle && styles['map-show'])} ref={containerRef}>
 				{children}
 			</div>
-			<div className={classNames(styles['fallback'], !load && styles['fallback-show'])}>
-				<Fallback load={load} />
+			<div className={classNames(styles['fallback'], !idle && styles['fallback-show'])}>
+				<Fallback loadingProgress={loadingProgress} />
 			</div>
 		</div>
 	);

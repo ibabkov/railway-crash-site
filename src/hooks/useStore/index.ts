@@ -12,8 +12,12 @@ export const useStore = create<StoreState>()(
 			set => {
 				return {
 					map: null,
+					loadingProgress: 0,
+					mapIdle: false,
 					actions: {
 						setMap: actions.setMap(set),
+						setLoadingProgress: actions.setLoadingProgress(set),
+						setMapIdle: actions.setMapIdle(set),
 					},
 				} as StoreState;
 			},
