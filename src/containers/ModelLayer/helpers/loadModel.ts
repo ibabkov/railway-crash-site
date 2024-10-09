@@ -7,6 +7,8 @@ export function loadModel(onProgress: (progress: number) => void, onLoad: (gltf:
 	const loader = new PLYLoader();
 
 	loader.load(MODEL_URL, onLoad, ({ loaded, total }) => {
+		if (!total) return;
+
 		onProgress(loaded / total);
 	});
 }

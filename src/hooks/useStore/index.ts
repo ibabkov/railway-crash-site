@@ -12,7 +12,7 @@ export const useStore = create<StoreState>()(
 			set => {
 				return {
 					map: null,
-					loadingProgress: 0,
+					loadingProgress: -1,
 					mapIdle: false,
 					actions: {
 						setMap: actions.setMap(set),

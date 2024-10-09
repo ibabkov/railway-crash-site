@@ -22,6 +22,7 @@ import { useStore } from '../../hooks/useStore';
 export const ApplicationContainer: React.FC = () => {
 	const { actions, loadingProgress, mapIdle } = useStore();
 	const mapContainerRef = React.useRef<HTMLDivElement>(null);
+	const idle = mapIdle && [-1, 1].includes(loadingProgress);
 
 	React.useEffect(() => {
 		if (mapContainerRef.current?.innerHTML) return;
@@ -33,7 +34,7 @@ export const ApplicationContainer: React.FC = () => {
 	}, [actions]);
 
 	return (
-		<MapLayout containerRef={mapContainerRef} loadingProgress={loadingProgress} idle={mapIdle && loadingProgress === 1}>
+		<MapLayout containerRef={mapContainerRef} loadingProgress={loadingProgress} idle={idle}>
 			<BuildingLayerContainer />
 			<FogLayerContainer />
 			<ModelLayerContainer />

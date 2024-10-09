@@ -16,9 +16,11 @@ export const Fallback: React.FC<FallbackProps> = props => {
 				<span className={styles['advice-text']}>You can ZOOM and ROTATE the map</span>
 			</span>
 			<span className={styles.loader}>Loading</span>
-			<span className={styles.progress}>
-				<span className={styles.bar} style={{ transform: `scaleX(${loadingProgress})` }} />
-			</span>
+			{loadingProgress >= 0 && (
+				<span className={styles.progress}>
+					<span className={styles.bar} style={{ transform: `scaleX(${loadingProgress})` }} />
+				</span>
+			)}
 		</div>
 	);
 };
