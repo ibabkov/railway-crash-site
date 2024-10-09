@@ -1,4 +1,5 @@
 import { FrontSide } from 'three';
+
 import { constructCdnUrl } from '../utils';
 
 export const MODEL_POSITION: [number, number] = [-76.19037, 36.68375];
