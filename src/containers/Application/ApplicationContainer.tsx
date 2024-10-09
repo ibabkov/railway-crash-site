@@ -7,53 +7,45 @@ import { BuildingLayerContainer } from '../BuildingLayer';
 import { FogLayerContainer } from '../FogLayer';
 import { ModelLayerContainer } from '../ModelLayer';
 import { MapControlContainer } from '../MapControl';
-import { useModifyApplicationState } from '../../hooks/applicationContext';
-import { modifyMap } from '../../modifiers/modifyMap';
 import {
 	INITIAL_MAP_PITCH,
 	MAP_CENTER,
 	MAP_STYLE,
 	MAPBOX_ACCESS_TOKEN,
-	INITIAL_MAP_ZOOM,
 	MAX_MAP_ZOOM,
 	MAP_BEARING,
+	MIN_MAP_ZOOM,
 } from '../../constants/map';
 import { MapLayout } from '../../components/MapLayout';
+import { useStore } from '../../hooks/useStore';
 
 export const ApplicationContainer: React.FC = () => {
-	const setMap = useModifyApplicationState(modifyMap);
+	const { actions, loadingProgress, mapIdle } = useStore();
 	const mapContainerRef = React.useRef<HTMLDivElement>(null);
-	const [load, setLoad] = React.useState(false);
-	const [idle, setIdle] = React.useState(false);
 
 	React.useEffect(() => {
-		setMap(new Map(getMapOptions(mapContainerRef.current!)));
+		if (mapContainerRef.current?.innerHTML) return;
+		actions.setMap({ map: new Map(getMapOptions(mapContainerRef.current!)) });
 	}, []);
 
 	const handleIdle = React.useCallback(() => {
-		setIdle(true);
-	}, [setIdle]);
-
-	const handleLoad = React.useCallback(() => {
-		setLoad(true);
-	}, [setLoad]);
+		actions.setMapIdle({ idle: true });
+	}, [actions]);
 
 	return (
-		<MapLayout containerRef={mapContainerRef} load={idle && load}>
+		<MapLayout containerRef={mapContainerRef} loadingProgress={loadingProgress} idle={mapIdle && loadingProgress === 1}>
 			<BuildingLayerContainer />
 			<FogLayerContainer />
-			<ModelLayerContainer onLoad={handleLoad} />
+			<ModelLayerContainer />
 			<MapControlContainer onIdle={handleIdle} />
 		</MapLayout>
 	);
 };
 
 function getMapOptions(mapContainer: HTMLDivElement): MapboxOptions {
-	const zoom = INITIAL_MAP_ZOOM - 4;
-
 	return {
-		zoom,
-		minZoom: zoom,
+		zoom: MIN_MAP_ZOOM,
+		minZoom: MIN_MAP_ZOOM,
 		maxZoom: MAX_MAP_ZOOM,
 		bearing: MAP_BEARING,
 		pitch: 0,

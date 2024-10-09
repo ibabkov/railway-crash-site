@@ -1,5 +1,5 @@
-export interface IMapControlContainerState {
+export type MapControlContainerState = {
 	rotating: boolean;
 	easing: boolean;
 	lastX: number;
-}
+};
