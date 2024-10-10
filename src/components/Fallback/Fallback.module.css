@@ -17,7 +17,7 @@
 	top: 28px;
 	font-size: 20px;
 	padding: 0 20px;
-	animation: fade-in 2s linear;
+	animation: fade-in 1s linear;
 }
 
 .advice-title {
@@ -37,7 +37,7 @@
 	flex-direction: row;
 	justify-content: flex-start;
 	height: 3px;
-	animation: fade-in 2s linear;
+	animation: fade-in 0.3s linear;
 }
 
 .bar {
@@ -66,7 +66,7 @@
 	flex-direction: row;
 	font-size: 24px;
 	padding-bottom: 14px;
-	animation: fade-in 2s linear;
+	animation: fade-in 0.3s linear;
 }
 
 .loader::after {
