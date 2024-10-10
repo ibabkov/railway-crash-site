@@ -17,7 +17,7 @@
 	top: 28px;
 	font-size: 20px;
 	padding: 0 20px;
-	animation: fade-in 1s linear;
+	animation: fade-in 0.5s linear;
 }
 
 .advice-title {
