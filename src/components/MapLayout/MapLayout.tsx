@@ -7,7 +7,7 @@ import styles from './MapLayout.module.css';
 
 export type MapLayoutProps = {
 	children: React.ReactNode;
-	containerRef: React.RefObject<HTMLDivElement>;
+	containerRef: React.RefObject<HTMLDivElement | null>;
 	idle: boolean;
 	loadingProgress: number;
 };
