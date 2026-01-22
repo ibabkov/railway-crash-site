@@ -16,7 +16,7 @@
 	"dependencies": {
 		"classnames": "^2.5.1",
 		"immer": "^10.1.1",
-		"lodash": "^4.17.21",
+		"lodash": "^4.17.23",
 		"mapbox-gl": "^3.9.1",
 		"next": "^15.1.2",
 		"react": "^19.0.0",
