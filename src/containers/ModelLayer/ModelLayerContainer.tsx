@@ -42,6 +42,8 @@ export const ModelLayerContainer = () => {
 		}
 
 		function handleModelLoaded(gltf: any) {
+			actions.setLoadingProgress({ progress: 1 });
+
 			const material = new PointsMaterial(MODEL_MATERIAL_OPTIONS);
 			gltf.computeVertexNormals();
 

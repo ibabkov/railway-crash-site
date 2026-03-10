@@ -12,7 +12,7 @@ export type MapLayoutProps = {
 	loadingProgress: number;
 };
 
-export const MapLayout: React.FC<MapLayoutProps> = props => {
+export const MapLayout = (props: MapLayoutProps) => {
 	const { children, idle, containerRef, loadingProgress } = props;
 
 	return (

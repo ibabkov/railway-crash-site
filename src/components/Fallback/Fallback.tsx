@@ -6,7 +6,7 @@ export type FallbackProps = {
 	loadingProgress: number;
 };
 
-export const Fallback: React.FC<FallbackProps> = props => {
+export const Fallback = (props: FallbackProps) => {
 	const { loadingProgress } = props;
 
 	return (

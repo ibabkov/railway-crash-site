@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 import { Map, MapboxOptions } from 'mapbox-gl';
@@ -19,7 +21,7 @@ import {
 import { MapLayout } from '../../components/MapLayout';
 import { useStore } from '../../hooks/useStore';
 
-export const ApplicationContainer: React.FC = () => {
+export const ApplicationContainer = () => {
 	const { actions, loadingProgress, mapIdle } = useStore();
 	const mapContainerRef = React.useRef<HTMLDivElement>(null);
 	const idle = mapIdle && [-1, 1].includes(loadingProgress);
