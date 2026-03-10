@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { useMapLoad } from '../../hooks/useMapLoad';
 
-export const FogLayerContainer: React.FC = () => {
+export const FogLayerContainer = () => {
 	useMapLoad(map => {
 		map.setFog({
 			range: [2, 10],

@@ -1,10 +1,8 @@
-import React from 'react';
-
 import { useMapLoad } from '../../hooks/useMapLoad';
 import { getBuildingLayerPrintOptions, getLabelLayerId } from './helpers';
 import { MIN_BUILDING_LAYER_ZOOM } from './constants';
 
-export const BuildingLayerContainer: React.FC = () => {
+export const BuildingLayerContainer = () => {
 	useMapLoad(map => {
 		map.addLayer(
 			{

@@ -6,9 +6,17 @@ import { MODEL_URL } from '../../../constants/model';
 export function loadModel(onProgress: (progress: number) => void, onLoad: (gltf: BufferGeometry) => void) {
 	const loader = new PLYLoader();
 
-	loader.load(MODEL_URL, onLoad, ({ loaded, total }) => {
-		if (!total) return;
+	loader.load(
+		MODEL_URL,
+		geometry => {
+			onProgress(1);
+			onLoad(geometry);
+		},
+		({ loaded, total }) => {
+			if (!total) return;
 
-		onProgress(loaded / total);
-	});
+			const progress = Math.min((loaded / total) * 0.99, 0.99);
+			onProgress(progress);
+		},
+	);
 }
